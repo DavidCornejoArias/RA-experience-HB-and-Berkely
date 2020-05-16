@@ -21,10 +21,10 @@ library(readxl)
 rm(list = ls())
 
 # importing the data
-root <- "C:/Users/david/Dropbox/RA application\Harvard & Berkely/05_database"
-out <- "C:/Users/david/Dropbox/RA application/Harvard & Berkely/05_database"
+root <- ""
+out <- ""
 setwd(root)
-DB<- read_excel("sampleDatabase.xlsx", sheet = "Sheet 1")
+DB<- read_excel(".xlsx", sheet = "SheetName")
 # creating the doomies
 # dummy for genre
 DB2 <- mutate(DB,women = ifelse(SEXO=="MUJER",1,0))
@@ -57,10 +57,10 @@ DB2$address <- str_replace_all(DB2$address,"\\bU\\/","UNIDAD") #378
 DB2$address <- str_squish(str_replace_all(DB2$address,"\\bCTON.|\\bCTN.|\\bHDA.|\\bCTO.|\\bCTN\\b|\\bHDA\\b|\\bCTO\\b|\\bCTON\\b"," CANTON "))
 DB2$address <- str_replace_all(DB2$address,"\\bPJE\\b|\\bPJES\\b","PASAJE")
 DB2$address<-str_squish(str_replace_all(DB2$address,"J\\/|\\/J"," EN "))
-DB2$address <- str_replace_all(DB2$address,"\\bLOTF\\b","LOTIFICACI”N")
+DB2$address <- str_replace_all(DB2$address,"\\bLOTF\\b","LOTIFICACI√ìN")
 DB2$address <- str_squish(str_replace_all(DB2$address,"\\bINTERIOR RIOR DEL\\b|\\bINTERIOR DE\\b|INTERIORIOR\\b|\\bINTERIOR DEL\\b|\\bINTERIORM\\b|\\bINT. DE\\b|\\bINT.|\\bINT DE\\b|\\bINT\\b","INTERIOR ")) #221
 DB2$address <- str_replace_all(DB2$address,"\\bSONSO\\b","SONSONATE")
-DB2$address <- str_squish(str_replace_all(DB2$address,"\\bB∫\\b|\\bB. |\\bB∞ |\\bB\\b","BARRIO "))
+DB2$address <- str_squish(str_replace_all(DB2$address,"\\bB¬∫\\b|\\bB. |\\bB¬∞ |\\bB\\b","BARRIO "))
 DB2$address<- str_replace_all(DB2$address,"\\bSN\\b","SAN")
 DB2$address<- str_replace_all(DB2$address,"\\bN\\' ","NUMERO ")
 DB2$address<- str_replace_all(DB2$address,"\\bOTE\\b","ORIENTE")
@@ -113,18 +113,18 @@ DB2$address<- str_replace_all(DB2$address,"\\J/ (.+?)( |$)"," ")
 
 
 #DB2$address<- str_replace_all(DB2$address,"\\bUB. CERRO SAN JACINTO\\b","SAN JACINTO") #338
-DB2$address<- str_replace_all(DB2$address,"\\bATRAS DE\\b|\\bATR¡S DE\\b|\\bATRAS DEL\\b|\\bATR¡S DEL\\b|\\bATR¡S\\b|\\bATRAS\\b","ATR¡S")
+DB2$address<- str_replace_all(DB2$address,"\\bATRAS DE\\b|\\bATR√ÅS DE\\b|\\bATRAS DEL\\b|\\bATR√ÅS DEL\\b|\\bATR√ÅS\\b|\\bATRAS\\b","ATR√ÅS")
 #DB2$address<- str_replace_all(DB2$address," \\bEN CANCHA DE FUTBOL\\b","") #241
 
 #CREATING A REFERENCE AND DIRECTION TOWARDS THE REFERENCE, Ex: En frente de Tienda...
 DB2<- DB2 %>% 
-  mutate(reference=as.character(str_squish(str_extract_all(address, "(\\bFRENTE(.+?),|\\bFRENTE.+|\\bINTERIOR(.+?),|\\bINTERIOR.+|\\bATR¡S(.+?),|\\bATR¡S.+|\\bPOR\\b(.+?),|\\bPOR\\b.+|\\bCONTIGUO\\b(.+?),|\\bCONTIGUO\\b.+|\\bALTURA\\b(.+?),|\\bALTURA\\b.+)"))))
+  mutate(reference=as.character(str_squish(str_extract_all(address, "(\\bFRENTE(.+?),|\\bFRENTE.+|\\bINTERIOR(.+?),|\\bINTERIOR.+|\\bATR√ÅS(.+?),|\\bATR√ÅS.+|\\bPOR\\b(.+?),|\\bPOR\\b.+|\\bCONTIGUO\\b(.+?),|\\bCONTIGUO\\b.+|\\bALTURA\\b(.+?),|\\bALTURA\\b.+)"))))
 DB2$reference<- str_replace_all(DB2$reference,"character\\(0\\)|character\\(\"|\"\\)|c\\((\"|)",'')
 #SEPARATING THE COLUMNS INTO POINT OF REFERENCE AND DIRECTION
-DB2<-separate(data = DB2, col = reference, into =c("reference1","place1","reference2","place2","reference3","place3"), sep = "( |\")\\b(?=FRENTE)|(?<=FRENTE)\\b( |\")|( |\")\\b(?=INTERIOR)|(?<=INTERIOR)\\b( |\")|( |\")\\b(?=ATR¡S)|(?<=ATR¡S)\\b( |\")|( |\")\\b(?=POR)|(?<=POR)\\b( |\")|( |\")\\b(?=CONTIGUO)|(?<=CONTIGUO)( |\")|\\b(?=ALTURA)|(?<=ALTURA)( |\")")
+DB2<-separate(data = DB2, col = reference, into =c("reference1","place1","reference2","place2","reference3","place3"), sep = "( |\")\\b(?=FRENTE)|(?<=FRENTE)\\b( |\")|( |\")\\b(?=INTERIOR)|(?<=INTERIOR)\\b( |\")|( |\")\\b(?=ATR√ÅS)|(?<=ATR√ÅS)\\b( |\")|( |\")\\b(?=POR)|(?<=POR)\\b( |\")|( |\")\\b(?=CONTIGUO)|(?<=CONTIGUO)( |\")|\\b(?=ALTURA)|(?<=ALTURA)( |\")")
 # Leaving just the direction without the reference
-DB2$clean_address<- str_replace_all(str_trim(str_replace_all(DB2$address,"(\\bFRENTE(.+?),|\\bFRENTE.+|\\bINTERIOR(.+?),|\\bINTERIOR.+|\\bATR¡S(.+?),|\\bATR¡S.+|\\bPOR\\b(.+?),|\\bPOR\\b.+|\\bCONTIGUO\\b(.+?),|\\bCONTIGUO\\b.+|\\bALTURA\\b(.+?),|\\bALTURA\\b.+)","")),",(?=$)","")
+DB2$clean_address<- str_replace_all(str_trim(str_replace_all(DB2$address,"(\\bFRENTE(.+?),|\\bFRENTE.+|\\bINTERIOR(.+?),|\\bINTERIOR.+|\\bATR√ÅS(.+?),|\\bATR√ÅS.+|\\bPOR\\b(.+?),|\\bPOR\\b.+|\\bCONTIGUO\\b(.+?),|\\bCONTIGUO\\b.+|\\bALTURA\\b(.+?),|\\bALTURA\\b.+)","")),",(?=$)","")
 # saving the dataset
 #load("mineria.RData")
 setwd(out)
-write.xlsx(DB2, 'cleanPNCDataBase.xlsx')
+write.xlsx(DB2, "name")
