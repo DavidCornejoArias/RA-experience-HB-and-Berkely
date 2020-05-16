@@ -12,12 +12,12 @@ from opencage.geocoder import OpenCageGeocode
 from pprint import pprint
 import time
 # setting file
-path = r'C:\Users\david\Dropbox\RA application\Harvard & Berkely\05_database'
-key = 'b87e12f9aef2429ca791fc6dba9bc79e'
+path = ''
+key = ''
 os.chdir(path)
 
 # loading the database
-df = pd.read_excel(r'sampleDatabase.xlsx')
+df = pd.read_excel(r'data.xlsx')
 listado = df['linea'].tolist()
 longitudes = []
 latitudes = []
