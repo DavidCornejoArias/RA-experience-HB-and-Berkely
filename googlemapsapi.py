@@ -11,7 +11,7 @@ Created on Mon Sep 16 20:57:08 2019
 Created on Wed Aug 29 19:02:46 2018
 """
 import os
-path = r'C:\Users\david\Dropbox\RA application\Harvard & Berkely\05_database'
+path = ""
 os.chdir(path)
 # Import needed modules 
 import pandas as pd
@@ -27,25 +27,25 @@ logger.setLevel(logging.DEBUG)
 ch = logging.StreamHandler()
 ch.setLevel(logging.DEBUG)
 logger.addHandler(ch)
-API_KEY = "AIzaSyBdoPa6WkYYlq9V84Th6_5G2iT3OYhRQe0"# For this first time Im trying with no API_KEY
+API_KEY = ""# For this first time Im trying with no API_KEY
 # although is slower​
 BACKOFF_TIME = 60 # because now there is no limit per day, just per second 
 # rest a minute, que can vary it ​
 # Output filename here ​
-output_filename = 'geo_google_results.csv'
+output_filename = 'csv'
 
-input_filename = 'sampleDatabase.xlsx'
+input_filename = 'xlsx'
 # Column name that contains address​
 address_column_name = 'descripción'
 # Return Full Google results, could be useful​
 RETURN_FULL_RESULTS = False
 #---------------------------------------------------------------#
 # Read the data 
-slv = pd..read_excel(input_filename, sheet_name = 'Sheet 1')
+slv = pd..read_excel(input_filename, sheet_name = 'sheetName')
 if address_column_name not in slv.columns:
     raise ValueError('Missing Address column in input data')
     
-addresses = slv[address_column_name] +', ' +slv['municipio']+', ' +slv['departamento']## only matters the address turn to 
+addresses = slv[address_column_name] +', ' +slv['city']+', ' +slv['state']## only matters the address turn to 
 # dataframe to object type 
 len(addresses)
 #--------------------------------------------------------------#
