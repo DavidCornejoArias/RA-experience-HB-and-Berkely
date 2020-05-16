@@ -16,11 +16,11 @@ from nltk.tokenize import word_tokenize
 from unicodedata import normalize
 
 # setting the file path
-direccion = r"C:\Users\david\Dropbox\RA application\Harvard & Berkely\05_database"
+direccion = r"location"
 os.chdir(direccion)
-Archivo = r"dataBaseExtractedAddress.xlsx"
+Archivo = r"FileName"
 data = pd.read_excel (Archivo)
-Archivo2 = r"locations.xlsx"
+Archivo2 = r"ComparionFIle"
 data2 = pd.read_excel (Archivo2)
 # reading the dataset
 df = pd.DataFrame(data)
