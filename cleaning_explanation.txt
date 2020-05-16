@@ -1,0 +1,18 @@
+# Cleaning
+
+This part of the project cleans the address. It takes away common Spanish abbreviations,
+besides it takes away common no necessary references like for example: "the house in front of the pink store".
+
+## Installation
+
+For the coding to work on your computer you will need different packages install
+
+```bash
+install pacakges 
+install.packages("tidyverse") 
+install.packages("readxl") 
+install.packages("stringr") 
+install.packages("tm") 
+install.packages("openxlsx")
+install.packages("readxl")
+```

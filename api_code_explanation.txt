@@ -1,0 +1,14 @@
+# Geocoding with API
+
+This part of the project takes the address and runs them through googleMaps API and openCage Geocoder API to find the locations.
+
+
+## Installation
+
+For the coding to work on your computer you will need different packages install
+
+```bash
+pip install pandas
+pip install requests
+pip install time
+```

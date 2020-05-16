@@ -1,0 +1,18 @@
+# Extracting information of location
+
+This part of the project separates some key words from the address like "City", "Town" for example if address
+ is: "Santa Teresa Street, San Salvador city". This part of the code will extract San Salvador city
+
+## Installation
+
+For the coding to work on your computer you will need different packages install
+
+```bash
+install pacakges 
+install.packages("tidyverse") 
+install.packages("readxl") 
+install.packages("stringr") 
+install.packages("tm") 
+install.packages("openxlsx")
+install.packages("readxl")
+```

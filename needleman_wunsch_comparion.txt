@@ -1,0 +1,19 @@
+# Geocoding with text distance needleman wunsch
+
+This part of the project compares the parts of the cities in locations with the address taken from the 
+databaseExtractedAddress. To do so, it measures the distances between two texts and it shows the one with 
+the least distance. For example it compares "San Salvadr city" with "Santa Tecla city", "Santa Ana city" and 
+"San Salvador city". The code would choose "San Salvador city" and it will show that location.  
+
+## Installation
+
+For the coding to work on your computer you will need different packages install
+
+```bash
+pip install textdistance
+pip install re
+pip install pandas
+pip install csv
+pip install nltk
+pip install unicodedata
+```
