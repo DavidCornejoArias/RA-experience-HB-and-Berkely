@@ -9,11 +9,11 @@ library(readxl)
 rm(list = ls())
 
 # change
-root <- "C:/Users/david/Dropbox/RA application\Harvard & Berkely/05_database" 
-out <- "C:/Users/david/Dropbox/RA application\Harvard & Berkely/05_database"
+root <- "rootName" 
+out <- "outname"
 #
 setwd(root)
-DB<- read.xlsx("cleanPNCDataBase.xlsx")
+DB<- read.xlsx("excelName")
 #DB2<- read.csv(file="joined with municipios and cantones.csv", header=TRUE, sep=",")
 # cleaning and preparing the dataset
 
@@ -28,7 +28,7 @@ DB$address2 <- str_squish(DB$address2)
 DB$locations<-str_extract_all(DB$address2,"\\b((canton|colonia|barrio|caserio|comunidad|lotificacion|urbanizacion)\\b (((.+?) (.+?) (.+?)( |\\b))|((.+?) (.+?)( |\\b))|((.+?)( |\\b))))")
 DB$locations <-  gsub("[[:digit:]]", "", DB$locations)
 
-# eliminar puntuación
+# eliminar puntuaciÃ³n
 DB$locations <-  gsub("[[:punct:]]", "", DB$locations)
 #
 DB$locations <- trimws(DB$locations)
